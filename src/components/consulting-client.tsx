@@ -55,7 +55,7 @@ export const Cursor = () => {
       }
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseout", handleMouseOut);
 
@@ -76,7 +76,7 @@ export const ServiceCard = ({
   isLast = false,
 }: {
   number: string;
-  title: string;
+  title: ReactNode;
   description: string;
   isLast?: boolean;
 }) => {
@@ -113,15 +113,11 @@ export const ServiceCard = ({
   };
 
   return (
-    <div
+    <article
       className="service-card"
       style={cardStyle}
-      tabIndex={0}
-      role="article"
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
-      onFocus={() => setIsActive(true)}
-      onBlur={() => setIsActive(false)}
     >
       <div style={overlayStyle} />
       <div style={{ flex: 1 }}>
@@ -140,84 +136,15 @@ export const ServiceCard = ({
             lineHeight: 1,
             marginBottom: "1rem",
           }}
-          dangerouslySetInnerHTML={{ __html: title }}
-        />
+        >
+          {title}
+        </h3>
       </div>
       <p style={{ marginTop: "auto" }}>{description}</p>
-    </div>
+    </article>
   );
 };
 
 export const ClientWrapper = ({ children }: { children: ReactNode }) => {
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.textContent = `
-      *, *::before, *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* Hide scrollbars while allowing scroll */
-      html, body {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE and Edge */
-      }
-      html::-webkit-scrollbar,
-      body::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        @keyframes pulse-shadow {
-          0% { opacity: 0.8; transform: scaleY(1); }
-          100% { opacity: 0.95; transform: scaleY(1.05); }
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        @keyframes pulse-shadow {
-          0%, 100% { opacity: 0.9; transform: scaleY(1); }
-        }
-      }
-
-      .skip-link:focus {
-        left: 2rem !important;
-        top: 2rem !important;
-      }
-
-      .nav-link:focus-visible,
-      .cta-button:focus-visible,
-      .footer-link:focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-      }
-
-      .service-card:focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: -2px;
-      }
-
-      @media (max-width: 768px) {
-        .grid-container { display: block !important; }
-        .content-block { margin-top: 2rem !important; width: 100% !important; }
-        .service-grid { grid-template-columns: 1fr !important; border-bottom: none !important; }
-        .service-card { border-right: none !important; border-bottom: 2px solid black !important; }
-        .hero-text { font-size: 3.5rem !important; }
-        .block-1 { width: 25vw !important; right: 5vw !important; height: 50vh !important; }
-        .block-2 { width: 30vw !important; left: 10vw !important; height: 40vh !important; }
-        .block-3 { width: 20vw !important; left: 50vw !important; height: 25vh !important; }
-        .nav-menu { display: none !important; }
-        .footer-grid { display: block !important; }
-        .footer-section { margin-bottom: 2rem !important; }
-        .footer-bottom { flex-direction: column !important; gap: 0.5rem !important; text-align: center !important; }
-      }
-    `;
-    document.head.appendChild(style);
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
   return <>{children}</>;
 };

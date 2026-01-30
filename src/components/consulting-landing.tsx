@@ -2,6 +2,8 @@ import { ClientWrapper, Cursor, ServiceCard } from "@/components/consulting-clie
 import { siteLinks } from "@/config/site";
 import type { CSSProperties } from "react";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 const customStyles = {
   root: {
     "--color-primary": "#FF4E02",
@@ -78,7 +80,7 @@ const Navigation = () => {
       >
         Skip to main content
       </a>
-      <div style={logoStyle}>agni labs</div>
+      <a href="/" style={{ ...logoStyle, textDecoration: "none", color: "inherit" }} aria-label="Agni Labs - Go to homepage">agni labs</a>
       <div className="nav-menu">
         <a
           href={siteLinks.calcom}
@@ -156,7 +158,7 @@ const ConsultingLandingContent = () => {
     textTransform: "lowercase",
     border: "none",
     cursor: "pointer",
-    transition: "all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    transition: "background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
     marginTop: "2rem",
     fontSize: "1.25rem",
     minWidth: "200px",
@@ -327,17 +329,17 @@ const ConsultingLandingContent = () => {
         >
           <ServiceCard
             number="01 / DISCOVER"
-            title="strategic<br />assessment"
+            title={<>strategic<br />assessment</>}
             description="we start by understanding you, your business, and your goals. through discussions, we identify real ai use cases that will move you needle."
           />
           <ServiceCard
             number="02 / DESIGN"
-            title="solution<br />design"
+            title={<>solution<br />design</>}
             description="whether it's no-code or custom rag pipelines, we work with you to architect ai systems tailored to your specific requirements."
           />
           <ServiceCard
             number="03 / DEPLOY"
-            title="delivery<br />& handover"
+            title={<>delivery<br />& handover</>}
             description="we build alongside your team and deliver working systems with clean code and documentation. you keep full ownership of everything we create together."
             isLast
           />
@@ -345,6 +347,7 @@ const ConsultingLandingContent = () => {
       </section>
 
       <footer
+        className="dark-section"
         style={{
           background: "black",
           color: "var(--color-primary)",
@@ -480,7 +483,7 @@ const ConsultingLandingContent = () => {
               opacity: 0.5,
             }}
           >
-            <span>© {new Date().getFullYear()} AGNI LABS</span>
+            <span>© {CURRENT_YEAR} AGNI LABS</span>
             <span>NEW YORK CITY</span>
           </div>
         </div>
