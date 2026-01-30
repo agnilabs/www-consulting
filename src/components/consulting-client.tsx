@@ -22,8 +22,21 @@ const cursorDotStyle: CSSProperties = {
 export const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [style, setStyle] = useState<CSSProperties>(cursorDotStyle);
+  const [hasPointer, setHasPointer] = useState(false);
 
   useEffect(() => {
+    // Only show cursor on devices with a fine pointer (mouse/trackpad)
+    const mediaQuery = window.matchMedia("(pointer: fine)");
+    setHasPointer(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setHasPointer(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!hasPointer) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.left = `${e.clientX}px`;
@@ -64,7 +77,9 @@ export const Cursor = () => {
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
     };
-  }, []);
+  }, [hasPointer]);
+
+  if (!hasPointer) return null;
 
   return <div ref={cursorRef} style={style} />;
 };

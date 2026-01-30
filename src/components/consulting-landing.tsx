@@ -1,5 +1,6 @@
 import { ClientWrapper, Cursor, ServiceCard } from "@/components/consulting-client";
 import { siteLinks } from "@/config/site";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -114,7 +115,7 @@ const btnPrimaryStyle: CSSProperties = {
 const Navigation = () => {
   return (
     <nav style={navStyle} aria-label="Main navigation">
-      <a
+      <Link
         href="#main-content"
         className="skip-link"
         style={{
@@ -127,10 +128,17 @@ const Navigation = () => {
         }}
       >
         Skip to main content
-      </a>
-      <a href="/" style={{ ...logoStyle, textDecoration: "none", color: "inherit" }} aria-label="Agni Labs - Go to homepage">agni labs</a>
+      </Link>
+      <Link href="/" style={{ ...logoStyle, textDecoration: "none", color: "inherit" }} aria-label="Agni Labs - Go to homepage">agni labs</Link>
       <div className="nav-menu">
-        <a
+        <Link
+          href="#services"
+          style={menuItemStyle}
+          className="nav-link"
+        >
+          services
+        </Link>
+        <Link
           href={siteLinks.calcom}
           target="_blank"
           rel="noopener noreferrer"
@@ -138,7 +146,7 @@ const Navigation = () => {
           className="nav-link"
         >
           contact
-        </a>
+        </Link>
       </div>
     </nav>
   );
@@ -239,7 +247,7 @@ const ConsultingLandingContent = () => {
               agni labs partners with organizations to turn generative ai
               ambition into reality. from strategy to real use.
             </p>
-            <a
+            <Link
               href={siteLinks.calcom}
               target="_blank"
               rel="noopener noreferrer"
@@ -248,7 +256,7 @@ const ConsultingLandingContent = () => {
             >
               start the conversation
               <span style={{ marginLeft: "1rem" }}>→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -405,7 +413,7 @@ const ConsultingLandingContent = () => {
                 gap: "0.5rem",
               }}
             >
-              <a
+              <Link
                 href={siteLinks.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -415,11 +423,12 @@ const ConsultingLandingContent = () => {
                   color: "var(--color-primary)",
                   fontSize: "0.875rem",
                   textDecoration: "none",
+                  textTransform: "lowercase",
                 }}
               >
                 LinkedIn
-              </a>
-              <a
+              </Link>
+              <Link
                 href={siteLinks.socials.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -429,11 +438,12 @@ const ConsultingLandingContent = () => {
                   color: "var(--color-primary)",
                   fontSize: "0.875rem",
                   textDecoration: "none",
+                  textTransform: "lowercase",
                 }}
               >
                 Twitter / X
-              </a>
-              <a
+              </Link>
+              <Link
                 href={siteLinks.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -443,10 +453,11 @@ const ConsultingLandingContent = () => {
                   color: "var(--color-primary)",
                   fontSize: "0.875rem",
                   textDecoration: "none",
+                  textTransform: "lowercase",
                 }}
               >
                 GitHub
-              </a>
+              </Link>
             </div>
           </div>
           <div className="footer-section" style={{ gridColumn: "span 3" }}>
@@ -460,7 +471,7 @@ const ConsultingLandingContent = () => {
               Inquiries
             </h4>
             <br />
-            <a
+            <Link
               href={`mailto:${siteLinks.email}`}
               className="footer-link"
               style={{
@@ -470,7 +481,7 @@ const ConsultingLandingContent = () => {
               }}
             >
               {siteLinks.email}
-            </a>
+            </Link>
           </div>
           <div
             className="footer-bottom"

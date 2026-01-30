@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/config/site";
+import { siteConfig, services } from "@/config/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
   name: "Agni Labs",
   url: siteConfig.url,
   description: siteConfig.description,
@@ -53,9 +53,53 @@ const jsonLd = {
   address: {
     "@type": "PostalAddress",
     addressLocality: "New York City",
+    addressRegion: "NY",
     addressCountry: "US",
   },
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: siteConfig.email,
+    contactType: "sales",
+    availableLanguage: "English",
+  },
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Generative AI",
+    "Large Language Models",
+    "Machine Learning",
+    "RAG Pipelines",
+    "AI Strategy",
+    "AI Integration",
+    "LLM Implementation",
+  ],
+  areaServed: [
+    {
+      "@type": "City",
+      name: "New York City",
+    },
+    {
+      "@type": "Country",
+      name: "United States",
+    },
+  ],
 };
+
+const serviceSchemas = services.map((service) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.name,
+  description: service.description,
+  serviceType: service.serviceType,
+  provider: {
+    "@type": "Organization",
+    name: "Agni Labs",
+    url: siteConfig.url,
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "United States",
+  },
+}));
 
 export default function RootLayout({
   children,
@@ -72,8 +116,15 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://github.com" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        {serviceSchemas.map((schema, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
