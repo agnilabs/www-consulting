@@ -36,34 +36,82 @@ const customStyles = {
   } as CSSProperties,
 };
 
+// Navigation styles - hoisted to module level
+const navStyle: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "2rem",
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  zIndex: 100,
+  mixBlendMode: "difference",
+  color: "white",
+};
+
+const logoStyle: CSSProperties = {
+  fontSize: "1.25rem",
+  fontWeight: 700,
+  letterSpacing: "-0.05em",
+};
+
+const menuItemStyle: CSSProperties = {
+  fontSize: "0.875rem",
+  marginLeft: "2rem",
+  cursor: "pointer",
+  textDecoration: "none",
+  color: "inherit",
+};
+
+// ConsultingLandingContent styles - hoisted to module level
+const heroSectionStyle: CSSProperties = {
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  padding: "2rem",
+  position: "relative",
+};
+
+const gridContainerStyle: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(12, 1fr)",
+  gap: "1rem",
+  padding: 0,
+  position: "relative",
+};
+
+const heroTextStyle: CSSProperties = {
+  fontSize: "clamp(3rem, 8vw, 9rem)",
+  lineHeight: 0.9,
+  marginBottom: "2rem",
+  position: "relative",
+  zIndex: 10,
+  fontWeight: 600,
+  letterSpacing: "-0.04em",
+  textTransform: "lowercase",
+};
+
+const btnPrimaryStyle: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  background: "black",
+  color: "var(--color-primary)",
+  padding: "1.5rem 2rem",
+  textDecoration: "none",
+  fontWeight: 700,
+  textTransform: "lowercase",
+  border: "none",
+  cursor: "pointer",
+  transition: "background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+  marginTop: "2rem",
+  fontSize: "1.25rem",
+  minWidth: "200px",
+};
+
 const Navigation = () => {
-  const navStyle: CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "2rem",
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    zIndex: 100,
-    mixBlendMode: "difference",
-    color: "white",
-  };
-
-  const logoStyle: CSSProperties = {
-    fontSize: "1.25rem",
-    fontWeight: 700,
-    letterSpacing: "-0.05em",
-  };
-
-  const menuItemStyle: CSSProperties = {
-    fontSize: "0.875rem",
-    marginLeft: "2rem",
-    cursor: "pointer",
-    textDecoration: "none",
-    color: "inherit",
-  };
-
   return (
     <nav style={navStyle} aria-label="Main navigation">
       <a
@@ -118,52 +166,6 @@ const ShadowConstruct = ({
 };
 
 const ConsultingLandingContent = () => {
-  const heroSectionStyle: CSSProperties = {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: "2rem",
-    position: "relative",
-  };
-
-  const gridContainerStyle: CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "repeat(12, 1fr)",
-    gap: "1rem",
-    padding: 0,
-    position: "relative",
-  };
-
-  const heroTextStyle: CSSProperties = {
-    fontSize: "clamp(3rem, 8vw, 9rem)",
-    lineHeight: 0.9,
-    marginBottom: "2rem",
-    position: "relative",
-    zIndex: 10,
-    fontWeight: 600,
-    letterSpacing: "-0.04em",
-    textTransform: "lowercase",
-  };
-
-  const btnPrimaryStyle: CSSProperties = {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    background: "black",
-    color: "var(--color-primary)",
-    padding: "1.5rem 2rem",
-    textDecoration: "none",
-    fontWeight: 700,
-    textTransform: "lowercase",
-    border: "none",
-    cursor: "pointer",
-    transition: "background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-    marginTop: "2rem",
-    fontSize: "1.25rem",
-    minWidth: "200px",
-  };
-
   return (
     <main id="main-content">
       <section style={heroSectionStyle}>

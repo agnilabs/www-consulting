@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: siteConfig.keywords,
   metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: siteConfig.url,
+  },
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
@@ -32,6 +35,25 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Agni Labs",
+  url: siteConfig.url,
+  description: siteConfig.description,
+  email: siteConfig.email,
+  sameAs: [
+    siteConfig.socials.linkedin,
+    siteConfig.socials.twitter,
+    siteConfig.socials.github,
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "New York City",
+    addressCountry: "US",
   },
 };
 
@@ -48,6 +70,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://linkedin.com" />
         <link rel="dns-prefetch" href="https://x.com" />
         <link rel="dns-prefetch" href="https://github.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

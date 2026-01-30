@@ -56,8 +56,8 @@ export const Cursor = () => {
     };
 
     document.addEventListener("mousemove", handleMouseMove, { passive: true });
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseout", handleMouseOut);
+    document.addEventListener("mouseover", handleMouseOver, { passive: true });
+    document.addEventListener("mouseout", handleMouseOut, { passive: true });
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
@@ -67,6 +67,27 @@ export const Cursor = () => {
   }, []);
 
   return <div ref={cursorRef} style={style} />;
+};
+
+const serviceCardBaseStyle: CSSProperties = {
+  padding: "3rem 2rem",
+  minHeight: "400px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  position: "relative",
+  overflow: "hidden",
+  outline: "none",
+};
+
+const serviceCardOverlayStyle: CSSProperties = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  background: "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)",
+  pointerEvents: "none",
 };
 
 export const ServiceCard = ({
@@ -80,46 +101,14 @@ export const ServiceCard = ({
   description: string;
   isLast?: boolean;
 }) => {
-  const [isActive, setIsActive] = useState(false);
-
   const cardStyle: CSSProperties = {
+    ...serviceCardBaseStyle,
     borderRight: isLast ? "none" : "2px solid black",
-    padding: "3rem 2rem",
-    minHeight: "400px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    transition: "background 0.3s ease",
-    position: "relative",
-    overflow: "hidden",
-    background: isActive ? "black" : "transparent",
-    color: isActive
-      ? "color-mix(in srgb, var(--color-primary) 80%, white 20%)"
-      : "inherit",
-    outline: "none",
-  };
-
-  const overlayStyle: CSSProperties = {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    background:
-      "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)",
-    opacity: isActive ? 1 : 0,
-    transition: "opacity 0.3s ease",
-    pointerEvents: "none",
   };
 
   return (
-    <article
-      className="service-card"
-      style={cardStyle}
-      onMouseEnter={() => setIsActive(true)}
-      onMouseLeave={() => setIsActive(false)}
-    >
-      <div style={overlayStyle} />
+    <article className="service-card" style={cardStyle}>
+      <div className="service-card-overlay" style={serviceCardOverlayStyle} />
       <div style={{ flex: 1 }}>
         <div
           style={{
