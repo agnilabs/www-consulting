@@ -110,7 +110,26 @@ a, button, .cta-button, .nav-link, .footer-link {
   .block-2 { width: 30vw !important; left: 10vw !important; height: 40vh !important; }
   .block-3 { width: 20vw !important; left: 50vw !important; height: 25vh !important; }
   .nav-menu { display: none !important; }
-  .footer-grid { display: block !important; }
-  .footer-section { margin-bottom: 2rem !important; }
-  .footer-bottom { flex-direction: column !important; gap: 0.5rem !important; text-align: center !important; }
+
+  /* New footer responsive styles */
+  .footer-info-bar {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: flex-start !important;
+  }
+  .footer-social,
+  .footer-contact,
+  .footer-meta {
+    text-align: left !important;
+  }
+  .footer-social > div {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  .footer-hero-text {
+    height: clamp(8rem, 25vw, 12rem) !important;
+  }
+  .agni-large-text {
+    font-size: clamp(2.5rem, 15vw, 5rem) !important;
+  }
 }

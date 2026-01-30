@@ -361,56 +361,39 @@ const ConsultingLandingContent = () => {
         style={{
           background: "black",
           color: "var(--color-primary)",
-          padding: "4rem 2rem",
           marginTop: "4rem",
+          overflow: "hidden",
         }}
       >
+        {/* Top info bar */}
         <div
-          className="footer-grid"
+          className="footer-info-bar"
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, 1fr)",
-            gap: "2rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            padding: "2rem",
+            borderBottom: "1px solid rgba(255, 78, 2, 0.2)",
           }}
         >
-          <div className="footer-section" style={{ gridColumn: "span 6" }}>
-            <h2
-              style={{
-                fontSize: "3rem",
-                marginBottom: "1rem",
-                fontWeight: 600,
-                letterSpacing: "-0.04em",
-                textTransform: "lowercase",
-              }}
-            >
-              agni labs
-            </h2>
-            <p
-              style={{
-                opacity: 0.7,
-                maxWidth: "350px",
-                fontSize: "1.125rem",
-              }}
-            >
-              we help teams build real things with ai
-            </p>
-          </div>
-          <div className="footer-section" style={{ gridColumn: "span 3" }}>
+          {/* Social links */}
+          <div className="footer-social">
             <h4
               style={{
                 fontWeight: 600,
                 letterSpacing: "-0.04em",
                 textTransform: "lowercase",
+                fontSize: "0.75rem",
+                opacity: 0.6,
+                marginBottom: "0.5rem",
               }}
             >
-              Social
+              social
             </h4>
-            <br />
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
-                gap: "0.5rem",
+                gap: "1.5rem",
               }}
             >
               <Link
@@ -419,14 +402,13 @@ const ConsultingLandingContent = () => {
                 rel="noopener noreferrer"
                 className="footer-link"
                 style={{
-                  margin: 0,
                   color: "var(--color-primary)",
                   fontSize: "0.875rem",
                   textDecoration: "none",
                   textTransform: "lowercase",
                 }}
               >
-                LinkedIn
+                linkedin
               </Link>
               <Link
                 href={siteLinks.socials.twitter}
@@ -434,14 +416,13 @@ const ConsultingLandingContent = () => {
                 rel="noopener noreferrer"
                 className="footer-link"
                 style={{
-                  margin: 0,
                   color: "var(--color-primary)",
                   fontSize: "0.875rem",
                   textDecoration: "none",
                   textTransform: "lowercase",
                 }}
               >
-                Twitter / X
+                twitter / x
               </Link>
               <Link
                 href={siteLinks.socials.github}
@@ -449,56 +430,98 @@ const ConsultingLandingContent = () => {
                 rel="noopener noreferrer"
                 className="footer-link"
                 style={{
-                  margin: 0,
                   color: "var(--color-primary)",
                   fontSize: "0.875rem",
                   textDecoration: "none",
                   textTransform: "lowercase",
                 }}
               >
-                GitHub
+                github
               </Link>
             </div>
           </div>
-          <div className="footer-section" style={{ gridColumn: "span 3" }}>
+
+          {/* Contact */}
+          <div className="footer-contact" style={{ textAlign: "center" }}>
             <h4
               style={{
                 fontWeight: 600,
                 letterSpacing: "-0.04em",
                 textTransform: "lowercase",
+                fontSize: "0.75rem",
+                opacity: 0.6,
+                marginBottom: "0.5rem",
               }}
             >
-              Inquiries
+              inquiries
             </h4>
-            <br />
             <Link
               href={`mailto:${siteLinks.email}`}
               className="footer-link"
               style={{
                 color: "var(--color-primary)",
                 textDecoration: "none",
-                fontSize: "1.25rem",
+                fontSize: "0.875rem",
               }}
             >
               {siteLinks.email}
             </Link>
           </div>
-          <div
-            className="footer-bottom"
+
+          {/* Copyright & Location */}
+          <div className="footer-meta" style={{ textAlign: "right" }}>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                opacity: 0.6,
+                display: "block",
+                marginBottom: "0.25rem",
+              }}
+            >
+              © {CURRENT_YEAR} AGNI LABS
+            </span>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                opacity: 0.6,
+              }}
+            >
+              NEW YORK CITY
+            </span>
+          </div>
+        </div>
+
+        {/* Large gradient AGNI text */}
+        <div
+          className="footer-hero-text"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            height: "clamp(12rem, 30vw, 22rem)",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "center",
+            paddingTop: "1rem",
+          }}
+        >
+          <span
+            className="agni-large-text"
             style={{
-              gridColumn: "span 12",
-              marginTop: "4rem",
-              borderTop: "1px solid #333",
-              paddingTop: "1rem",
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "0.75rem",
-              opacity: 0.5,
+              fontSize: "clamp(6rem, 20vw, 16rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              lineHeight: 0.85,
+              textTransform: "uppercase",
+              background: "linear-gradient(to bottom, #FF4E02 0%, #FF4E02 40%, rgba(255, 78, 2, 0.3) 80%, transparent 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+              userSelect: "none",
+              whiteSpace: "nowrap",
             }}
           >
-            <span>© {CURRENT_YEAR} AGNI LABS</span>
-            <span>NEW YORK CITY</span>
-          </div>
+            AGNI LABS
+          </span>
         </div>
       </footer>
     </main>
