@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 const CURSOR_INTERACTIVE_SELECTOR = "a, button, .service-card";
 
@@ -21,20 +21,24 @@ const cursorDotStyle: CSSProperties = {
 };
 
 // Use refs for transient mouse position to avoid re-renders (rule: rerender-use-ref-transient-values)
+const getServerSnapshot = () => false;
+
 export const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [style, setStyle] = useState<CSSProperties>(cursorDotStyle);
-  const [hasPointer, setHasPointer] = useState(false);
 
-  useEffect(() => {
-    // Only show cursor on devices with a fine pointer (mouse/trackpad)
+  // Use useSyncExternalStore for media query subscription
+  const subscribe = useCallback((callback: () => void) => {
     const mediaQuery = window.matchMedia("(pointer: fine)");
-    setHasPointer(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => setHasPointer(e.matches);
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    mediaQuery.addEventListener("change", callback);
+    return () => mediaQuery.removeEventListener("change", callback);
   }, []);
+
+  const getSnapshot = useCallback(() => {
+    return window.matchMedia("(pointer: fine)").matches;
+  }, []);
+
+  const hasPointer = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
     if (!hasPointer) return;

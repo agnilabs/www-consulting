@@ -1,12 +1,9 @@
 import { ClientWrapper, Cursor, ServiceCard } from "@/components/consulting-client";
+import { Footer } from "@/components/shared/footer";
+import { Navigation } from "@/components/shared/navigation";
 import { CTAButton } from "@/components/ui/cta-button";
-import { FooterLink } from "@/components/ui/footer-link";
-import { FooterSectionHeader } from "@/components/ui/footer-section-header";
 import { siteLinks } from "@/config/site";
-import Link from "next/link";
 import type { CSSProperties } from "react";
-
-const CURRENT_YEAR = new Date().getFullYear();
 
 const customStyles = {
   root: {
@@ -27,53 +24,24 @@ const customStyles = {
     lineHeight: "1.4",
     WebkitFontSmoothing: "antialiased",
   } as CSSProperties,
-  noiseOverlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    pointerEvents: "none",
-    zIndex: 9999,
-    opacity: 0.015,
-    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.3' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-  } as CSSProperties,
 };
 
-const Navigation = () => {
-  return (
-    <nav className="nav-main" aria-label="Main navigation">
-      <Link
-        href="#main-content"
-        className="skip-link"
-        style={{
-          position: "absolute",
-          left: "-9999px",
-          zIndex: 999,
-          padding: "1rem",
-          background: "black",
-          color: "var(--color-primary)",
-        }}
-      >
-        Skip to main content
-      </Link>
-      <Link href="/" className="nav-logo" aria-label="Agni Labs - Go to homepage">agni labs</Link>
-      <div className="nav-menu">
-        <Link href="#services" className="nav-link nav-menu-item">
-          services
-        </Link>
-        <Link
-          href={siteLinks.calcom}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nav-link nav-menu-item"
-        >
-          contact
-        </Link>
-      </div>
-    </nav>
-  );
-};
+// Hoisted static JSX (rendering-hoist-jsx)
+const noiseOverlay = (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      pointerEvents: "none",
+      zIndex: 9999,
+      opacity: 0.015,
+      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.3' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+    }}
+  />
+);
 
 const ShadowConstruct = ({
   className,
@@ -261,96 +229,7 @@ const ConsultingLandingContent = () => {
         </div>
       </section>
 
-      <footer
-        className="dark-section"
-        style={{
-          background: "black",
-          color: "var(--color-primary)",
-          marginTop: "4rem",
-          overflow: "hidden",
-        }}
-      >
-        {/* Top info bar */}
-        <div
-          className="footer-info-bar"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            padding: "2rem",
-            borderBottom: "1px solid rgba(255, 78, 2, 0.2)",
-          }}
-        >
-          {/* Social links */}
-          <div className="footer-social">
-            <FooterSectionHeader>social</FooterSectionHeader>
-            <div
-              style={{
-                display: "flex",
-                gap: "1.5rem",
-              }}
-            >
-              <FooterLink href={siteLinks.socials.linkedin} external>
-                linkedin
-              </FooterLink>
-              <FooterLink href={siteLinks.socials.twitter} external>
-                twitter/x
-              </FooterLink>
-            </div>
-          </div>
-
-          {/* Contact */}
-          <div className="footer-contact" style={{ textAlign: "center" }}>
-            <FooterSectionHeader>inquiries</FooterSectionHeader>
-            <FooterLink href={`mailto:${siteLinks.email}`}>
-              {siteLinks.email}
-            </FooterLink>
-          </div>
-
-          {/* Copyright & Location */}
-          <div className="footer-meta" style={{ textAlign: "right" }}>
-            <span className="footer-meta-text" style={{ display: "block", marginBottom: "0.25rem" }}>
-              © {CURRENT_YEAR} AGNI LABS
-            </span>
-            <span className="footer-meta-text">
-              NEW YORK CITY
-            </span>
-          </div>
-        </div>
-
-        {/* Large gradient AGNI text */}
-        <div
-          className="footer-hero-text"
-          style={{
-            position: "relative",
-            overflow: "hidden",
-            height: "clamp(12rem, 30vw, 22rem)",
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            paddingTop: "1rem",
-          }}
-        >
-          <span
-            className="agni-large-text"
-            style={{
-              fontSize: "clamp(6rem, 20vw, 16rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              lineHeight: 0.85,
-              textTransform: "uppercase",
-              background: "linear-gradient(to bottom, #FF4E02 0%, #FF4E02 40%, rgba(255, 78, 2, 0.3) 80%, transparent 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              color: "transparent",
-              userSelect: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
-            AGNI LABS
-          </span>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 };
@@ -359,7 +238,7 @@ export const ConsultingLanding = () => {
   return (
     <ClientWrapper>
       <div style={{ ...customStyles.root, ...customStyles.body }}>
-        <div style={customStyles.noiseOverlay} />
+        {noiseOverlay}
         <Cursor />
         <Navigation />
         <ConsultingLandingContent />

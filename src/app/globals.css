@@ -257,4 +257,25 @@ a, button, .cta-button, .nav-link, .footer-link {
   .agni-large-text {
     font-size: clamp(2.5rem, 15vw, 5rem) !important;
   }
+
+  /* Team page responsive */
+  .founder-card {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .founder-bio {
+    padding-top: 2rem !important;
+    border-top: 1px solid rgba(0,0,0,0.1) !important;
+  }
+}
+
+/* Founder quote styling */
+.founder-quote {
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  border-left: 3px solid rgba(0,0,0,0.3);
+  margin: 1rem 0;
+  max-width: 65ch;
 }
