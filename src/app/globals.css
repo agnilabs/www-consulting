@@ -311,37 +311,169 @@ a, button, .cta-button, .nav-link, .footer-link {
   max-width: 65ch;
 }
 
-/* Mobile Tab Bar */
-.mobile-tab-bar {
+/* ══════════════════════════════════════════════════════════
+   Mobile FAB Navigation
+   Expanding action button · hamburger → X · blend-mode
+   adaptive contrast · staggered reveal · backdrop blur
+   ══════════════════════════════════════════════════════════ */
+
+.mobile-fab {
   display: none;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #000 !important;
-  color: #FF4E02 !important;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  right: 20px;
   z-index: 1000;
-  padding: 0.75rem 1rem;
-  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
-  justify-content: space-around;
-  align-items: center;
-  border-top: 1px solid rgba(255, 78, 2, 0.2);
+  mix-blend-mode: difference;
 }
 
-.mobile-tab-bar a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: #FF4E02 !important;
-  font-size: 0.65rem;
-  font-weight: 600;
-  text-transform: lowercase;
-  gap: 4px;
+.mobile-fab-open {
+  mix-blend-mode: normal;
 }
 
 @media (max-width: 768px) {
-  .mobile-tab-bar {
-    display: flex;
-  }
+  .mobile-fab { display: block; }
+}
+
+/* Scrim overlay */
+.mobile-fab-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: -1;
+  animation: fab-scrim-in 0.25s ease-out;
+}
+
+@keyframes fab-scrim-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Trigger button — hamburger icon */
+.mobile-fab-trigger {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #FF4E02;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  z-index: 2;
+  transition: background 0.25s, color 0.25s;
+  box-shadow: 0 4px 20px rgba(255, 78, 2, 0.35);
+}
+
+.mobile-fab-open .mobile-fab-trigger {
+  background: #111;
+  color: #FF4E02;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(255, 78, 2, 0.3);
+}
+
+/* Hamburger bars → X morphing */
+.mobile-fab-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s;
+}
+
+.mobile-fab-open .mobile-fab-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-fab-open .mobile-fab-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-fab-open .mobile-fab-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Pulsing ring */
+.mobile-fab-pulse {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 78, 2, 0.4);
+  pointer-events: none;
+  animation: fab-ring 2.2s ease-out infinite;
+}
+
+.mobile-fab-open .mobile-fab-pulse {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes fab-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Menu items */
+.mobile-fab-menu {
+  position: absolute;
+  bottom: 66px;
+  right: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.mobile-fab-open .mobile-fab-menu {
+  pointer-events: auto;
+}
+
+.mobile-fab-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #111;
+  color: #FF4E02;
+  text-decoration: none;
+  padding: 10px 18px 10px 14px;
+  border-radius: 28px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-transform: lowercase;
+  border: 1px solid rgba(255, 78, 2, 0.15);
+  opacity: 0;
+  transform: scale(0.4) translateY(20px);
+  transition:
+    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.15s,
+    color 0.15s;
+  transition-delay: calc(var(--i) * 0.06s);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.mobile-fab-open .mobile-fab-item {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition-delay: calc((2 - var(--i)) * 0.06s);
+}
+
+.mobile-fab-item:active {
+  background: #FF4E02;
+  color: #000;
 }

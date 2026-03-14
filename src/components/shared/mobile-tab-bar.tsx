@@ -1,12 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { siteLinks } from "@/config/site";
 import Link from "next/link";
 
 const ServicesIcon = () => (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -23,8 +24,8 @@ const ServicesIcon = () => (
 
 const TeamIcon = () => (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -39,8 +40,8 @@ const TeamIcon = () => (
 
 const ContactIcon = () => (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -53,24 +54,54 @@ const ContactIcon = () => (
 );
 
 export const MobileTabBar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <nav className="mobile-tab-bar" aria-label="Mobile navigation">
-      <Link href="/#services">
-        <ServicesIcon />
-        <span>services</span>
-      </Link>
-      <Link href="/team">
-        <TeamIcon />
-        <span>team</span>
-      </Link>
-      <a
-        href={siteLinks.calcom}
-        target="_blank"
-        rel="noopener noreferrer"
+    <div className={`mobile-fab ${open ? "mobile-fab-open" : ""}`}>
+      {open && (
+        <div className="mobile-fab-scrim" onClick={() => setOpen(false)} />
+      )}
+      <div className="mobile-fab-menu">
+        <Link
+          href="/#services"
+          className="mobile-fab-item"
+          style={{ "--i": 0 } as React.CSSProperties}
+          onClick={() => setOpen(false)}
+        >
+          <ServicesIcon />
+          <span>services</span>
+        </Link>
+        <Link
+          href="/team"
+          className="mobile-fab-item"
+          style={{ "--i": 1 } as React.CSSProperties}
+          onClick={() => setOpen(false)}
+        >
+          <TeamIcon />
+          <span>team</span>
+        </Link>
+        <a
+          href={siteLinks.calcom}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mobile-fab-item"
+          style={{ "--i": 2 } as React.CSSProperties}
+          onClick={() => setOpen(false)}
+        >
+          <ContactIcon />
+          <span>contact</span>
+        </a>
+      </div>
+      <button
+        className="mobile-fab-trigger"
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Toggle navigation"
       >
-        <ContactIcon />
-        <span>contact</span>
-      </a>
-    </nav>
+        <span className="mobile-fab-bar" />
+        <span className="mobile-fab-bar" />
+        <span className="mobile-fab-bar" />
+      </button>
+      <div className="mobile-fab-pulse" />
+    </div>
   );
 };
