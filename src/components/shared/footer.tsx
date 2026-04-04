@@ -41,6 +41,12 @@ export const Footer = () => {
             <FooterLink href={siteLinks.socials.twitter} external>
               twitter/x
             </FooterLink>
+            <FooterLink href="/blog">
+              blog
+            </FooterLink>
+            <FooterLink href="/rss.xml">
+              rss
+            </FooterLink>
           </div>
         </div>
 

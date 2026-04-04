@@ -1,0 +1,93 @@
+export const metadata = {
+  title: "How to find the AI use case that's actually worth building",
+  description:
+    "A practical framework for picking your first AI project, and avoiding the ones that sound exciting but go nowhere.",
+  slug: "how-to-find-the-ai-use-case-worth-building",
+  publishedAt: "2026-04-04",
+  tags: ["strategy", "ai-adoption", "implementation"],
+  draft: false,
+};
+
+Here's what I see happen constantly.
+
+A company decides they want to "use AI." Someone suggests a chatbot. Someone else says knowledge base. A VP saw a demo at a conference and wants "something like that." Three months and a lot of engineering hours later, the thing works in demos but nobody uses it.
+
+The problem was never the technology. It was picking the wrong thing to build.
+
+## Start with the pain, not the technology
+
+This sounds obvious but almost nobody does it. The conversation usually starts with "what can AI do?" when it should start with "what's eating our time?"
+
+Go sit with your team for a day. Not a meeting. Actually watch how they work. You'll find stuff like:
+
+- Someone spending 3 hours every morning sorting through incoming requests and routing them to the right person
+- A team lead manually pulling data from 4 different tools to build a weekly report no one reads carefully
+- Support agents hunting through a knowledge base organized by the person who built it 3 years ago and left the company
+
+These are boring problems. They'll never make it into a keynote. But they're the ones where AI actually delivers.
+
+## Three filters before you commit
+
+Before committing engineering time to anything, I run every potential project through three questions. If it doesn't clear all three, I don't build it.
+
+### Does it involve judgment that follows a pattern?
+
+There's a difference between tasks that are repetitive and tasks that require repetitive *judgment*.
+
+Moving data from system A to system B is automation. Write a script. No model needed.
+
+But triaging support tickets by urgency? Extracting key terms from vendor contracts? Summarizing a 45-minute meeting into three action items? That's pattern-based judgment. A person could explain how they make the call in about two minutes, but it still requires reading and thinking every single time. That's the sweet spot for AI.
+
+If someone on your team is doing the same type of thinking over and over, reading something, making a decision, moving on to the next one, that's a candidate.
+
+### What happens when it's wrong?
+
+This is the filter people skip. It's also the one that kills projects six weeks in.
+
+If the AI drafts an internal summary and gets a detail wrong, someone catches it before it matters. Fine. But if it's auto-responding to customers or making classification decisions that affect SLAs, a bad output has real cost.
+
+| Mistake cost | Example | How to build it |
+| --- | --- | --- |
+| Low | Drafting summaries, tagging content | Ship it, iterate fast |
+| Medium | Ticket classification, lead scoring | Human reviews before action |
+| High | Compliance decisions, customer-facing answers | AI suggests, human decides |
+
+Start with the low-cost stuff. Let your team build confidence with AI systems before you put them in the critical path.
+
+### Can you get the data today?
+
+Not after a 6-month pipeline project. *Today.*
+
+This is the most common project killer and it doesn't get talked about enough. You pick a great use case, start building, and realize the data you need is scattered across three systems with no API, or it's in a format that'll take months of cleanup before a model can touch it.
+
+Before you build, answer honestly:
+
+- Is the data accessible right now without a major integration effort?
+- Do you have enough examples to validate the approach?
+- Is someone still generating this data regularly, or are you working off a static export from 2023?
+
+If any answer is no, you don't have a 4-week project. You have a 6-month one. That might still be worth doing, but you should know that going in.
+
+## The traps
+
+I've watched teams fall into these enough times that I can usually spot them in the first conversation.
+
+**The demo trap.** Your prototype works beautifully on the 10 clean examples you tested with. Then real data hits and it falls apart. Always test with your messiest, most representative inputs before you get attached to the solution.
+
+**The boil-the-ocean trap.** "Let's automate the entire claims processing workflow end to end." No. Pick the single most painful step, maybe it's the initial document classification, and nail that one first. You can always expand later. You can't un-waste three months of engineering time.
+
+**The hype trap.** Agents, MCPs, multimodal, whatever the current cycle is pushing. These are tools, not strategies. Start with the problem. If the trending technology happens to be the best fit, great. Usually a straightforward LLM call with good prompting gets you 80% of the way there.
+
+## Why the boring projects win
+
+The companies I've seen get real, lasting value from AI aren't the ones building the most impressive systems. They're the ones that found a specific problem costing someone real hours every week, built something targeted to fix it, and shipped it fast enough that the team could see the difference within days.
+
+That first win changes everything. Not because of the hours saved (though those matter) but because of what happens next. People start coming to you. "Could we do this for onboarding too?" "What about the compliance reviews?" "I've been maintaining this spreadsheet by hand for two years..."
+
+You stop having to sell AI internally. Adoption becomes organic because people saw it work on something that mattered to them.
+
+The trick is getting that first project right. Pick something boring, painful, low-risk, and data-ready. Save the ambitious stuff for after you've earned trust.
+
+---
+
+If you're trying to figure out where AI fits in your organization, [we help teams find and build the right starting point](https://cal.com/agnilabs). No 90-day roadmaps, just finding the problem worth solving and shipping something that works.

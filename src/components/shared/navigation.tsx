@@ -23,6 +23,9 @@ export const Navigation = () => {
         <Link href="/#services" className="nav-link nav-menu-item">
           services
         </Link>
+        <Link href="/blog" className="nav-link nav-menu-item">
+          blog
+        </Link>
         <Link href="/team" className="nav-link nav-menu-item">
           team
         </Link>
