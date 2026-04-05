@@ -7,6 +7,16 @@
   --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* Text selection — brand inversion (mirrors btn-primary) */
+::selection {
+  background: #000;
+  color: #FF4E02;
+}
+::-moz-selection {
+  background: #000;
+  color: #FF4E02;
+}
+
 /* Base reset */
 *, *::before, *::after {
   box-sizing: border-box;
