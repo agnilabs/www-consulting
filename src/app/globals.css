@@ -259,6 +259,7 @@ a, button, .cta-button, .nav-link, .footer-link {
   opacity: 0.6;
 }
 
+/* Footer variant link colors (on orange bg, links should be black) */
 /* Responsive overrides */
 @media (max-width: 768px) {
   .grid-container { display: block !important; }
@@ -291,6 +292,14 @@ a, button, .cta-button, .nav-link, .footer-link {
   }
   .agni-large-text {
     font-size: clamp(2.5rem, 15vw, 5rem) !important;
+  }
+
+  /* Footer C responsive */
+  .footer-c-top {
+    grid-template-columns: 1fr !important;
+  }
+  .footer-c-links {
+    align-items: flex-start !important;
   }
 
   /* Team page responsive */

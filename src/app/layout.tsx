@@ -1,4 +1,4 @@
-import { Footer } from "@/components/shared/footer";
+import { FooterC } from "@/components/shared/footer-c";
 import { MobileTabBar } from "@/components/shared/mobile-tab-bar";
 import { Navigation } from "@/components/shared/navigation";
 import { PageShell } from "@/components/shared/page-shell";
@@ -157,7 +157,7 @@ export default function RootLayout({
         <MobileTabBar />
         <PageShell>
           {children}
-          <Footer />
+          <FooterC />
         </PageShell>
         <Analytics />
       </body>

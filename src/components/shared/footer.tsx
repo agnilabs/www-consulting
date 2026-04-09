@@ -80,6 +80,7 @@ export const Footer = () => {
           alignItems: "flex-start",
           justifyContent: "center",
           paddingTop: "1rem",
+          backgroundColor: "#FF4E02",
         }}
       >
         <span
@@ -90,7 +91,7 @@ export const Footer = () => {
             letterSpacing: "-0.04em",
             lineHeight: 0.85,
             textTransform: "uppercase",
-            background: "linear-gradient(to bottom, #FF4E02 0%, #FF4E02 40%, rgba(255, 78, 2, 0.3) 80%, transparent 100%)",
+            background: "linear-gradient(to bottom, #000 0%, #000 40%, rgba(0, 0, 0, 0.3) 80%, transparent 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",
