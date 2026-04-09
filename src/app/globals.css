@@ -200,6 +200,11 @@ a, button, .cta-button, .nav-link, .footer-link {
   color: inherit;
 }
 
+/* Ensure main content fills available space so footer stays at bottom */
+#main-content {
+  flex: 1 0 auto;
+}
+
 /* Layout */
 .section-hero {
   min-height: 100vh;

@@ -12,8 +12,10 @@ export const FooterC = () => {
   return (
     <footer
       style={{
-        marginTop: "4rem",
+        marginTop: "auto",
+        paddingTop: "4rem",
         overflow: "hidden",
+        flexShrink: 0,
       }}
     >
       {/* Black Zone — CTA & Links */}

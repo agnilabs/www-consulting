@@ -13,6 +13,8 @@ const shellStyle: CSSProperties = {
   fontSize: "16px",
   lineHeight: "1.4",
   WebkitFontSmoothing: "antialiased",
+  display: "flex",
+  flexDirection: "column",
 };
 
 // Hoisted static JSX (rendering-hoist-jsx)
