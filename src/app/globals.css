@@ -259,7 +259,11 @@ a, button, .cta-button, .nav-link, .footer-link {
   opacity: 0.6;
 }
 
-/* Footer variant link colors (on orange bg, links should be black) */
+/* Footer C — larger link & meta sizing */
+.footer-c-nav .footer-link-styled {
+  font-size: 1.25rem;
+}
+
 /* Responsive overrides */
 @media (max-width: 768px) {
   .grid-container { display: block !important; }

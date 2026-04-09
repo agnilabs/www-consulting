@@ -66,9 +66,11 @@ export const FooterC = () => {
             }}
           >
             <div
+              className="footer-c-nav"
               style={{
                 display: "flex",
-                gap: "1.25rem",
+                gap: "1.75rem",
+                fontSize: "1.25rem",
               }}
             >
               <FooterLink href={siteLinks.socials.linkedin} external>
@@ -82,10 +84,11 @@ export const FooterC = () => {
             </div>
             <div
               style={{
-                fontSize: "0.7rem",
-                opacity: 0.4,
+                fontSize: "0.85rem",
+                opacity: 0.5,
                 display: "flex",
-                gap: "1rem",
+                gap: "1.25rem",
+                letterSpacing: "0.02em",
               }}
             >
               <span>© {CURRENT_YEAR} AGNI LABS</span>
