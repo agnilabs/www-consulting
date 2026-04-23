@@ -669,7 +669,6 @@ a, button, .cta-button, .nav-link, .footer-link {
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-transform: lowercase;
 }
 
 .blog-card-title {

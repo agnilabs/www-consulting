@@ -1,5 +1,11 @@
 import { founder, siteConfig } from "@/config/site";
-import { formatBlogDate, getAllPostSlugs, getPostBySlug, getPostModule } from "@/lib/blog";
+import {
+  formatBlogDate,
+  formatBlogTag,
+  getAllPostSlugs,
+  getPostBySlug,
+  getPostModule,
+} from "@/lib/blog";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -27,6 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const canonicalUrl = `${siteConfig.url}${post.url}`;
   const socialImage = post.coverImage ?? `${siteConfig.url}/opengraph-image.png`;
+  const formattedTags = post.tags.map(formatBlogTag);
 
   return {
     title: post.title,
@@ -41,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt ?? post.publishedAt,
-      tags: post.tags,
+      tags: formattedTags,
       authors: [founder.name],
       images: [
         {
@@ -69,6 +76,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const { default: PostBody } = await getPostModule(slug);
   const canonicalUrl = `${siteConfig.url}${post.url}`;
   const socialImage = post.coverImage ?? `${siteConfig.url}/opengraph-image.png`;
+  const formattedTags = post.tags.map(formatBlogTag);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -104,7 +112,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     dateModified: post.updatedAt ?? post.publishedAt,
     url: canonicalUrl,
     image: socialImage,
-    keywords: post.tags.join(", "),
+    keywords: formattedTags.join(", "),
     author: {
       "@type": "Person",
       name: founder.name,
@@ -143,7 +151,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="blog-card-tags" aria-label="Tags">
               {post.tags.map((tag) => (
                 <span key={tag} className="blog-tag">
-                  {tag}
+                  {formatBlogTag(tag)}
                 </span>
               ))}
             </div>

@@ -7,6 +7,14 @@ import path from "node:path";
 const POSTS_DIRECTORY = path.join(process.cwd(), "content", "blog");
 const POST_FILE_EXTENSION = ".mdx";
 const WORDS_PER_MINUTE = 220;
+const TAG_ACRONYMS: Record<string, string> = {
+  ai: "AI",
+  api: "API",
+  crm: "CRM",
+  llm: "LLM",
+  seo: "SEO",
+  saas: "SaaS",
+};
 
 export type BlogPostMeta = {
   title: string;
@@ -176,4 +184,15 @@ export function formatBlogDate(value: string) {
     day: "numeric",
     year: "numeric",
   }).format(new Date(value));
+}
+
+export function formatBlogTag(value: string) {
+  return value
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map((part) => {
+      const normalizedPart = part.toLowerCase();
+      return TAG_ACRONYMS[normalizedPart] ?? `${normalizedPart[0].toUpperCase()}${normalizedPart.slice(1)}`;
+    })
+    .join(" ");
 }
